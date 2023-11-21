@@ -1,0 +1,9 @@
+{
+	"name": "finbidatafactory1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d4a7a006-6416-4311-92fa-1f881ab7a173",
+		"tenantId": "f031cb42-4097-45cc-b54e-ca6a752739c9"
+	}
+}
