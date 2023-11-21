@@ -1,0 +1,9 @@
+{
+	"name": "GouthamAdfProject1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2499244f-96ac-48dc-9bb9-1ec9e06c280c",
+		"tenantId": "f031cb42-4097-45cc-b54e-ca6a752739c9"
+	}
+}
