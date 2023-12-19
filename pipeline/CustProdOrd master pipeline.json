@@ -1,5 +1,5 @@
 {
-	"name": "master pipeline",
+	"name": "CustProdOrd master pipeline",
 	"properties": {
 		"activities": [
 			{
