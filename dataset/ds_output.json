@@ -1,0 +1,30 @@
+{
+	"name": "ds_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FolderName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ForEachPractice"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().FolderName",
+					"type": "Expression"
+				},
+				"container": "output"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

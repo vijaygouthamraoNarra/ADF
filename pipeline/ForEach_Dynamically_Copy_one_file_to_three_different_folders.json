@@ -1,0 +1,85 @@
+{
+	"name": "ForEach_Dynamically_Copy_one_file_to_three_different_folders",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.outputfolder",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_input",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_output",
+									"type": "DatasetReference",
+									"parameters": {
+										"FolderName": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"outputfolder": {
+				"type": "array",
+				"defaultValue": [
+					"output1",
+					"output2",
+					"output3"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-04T07:49:06Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

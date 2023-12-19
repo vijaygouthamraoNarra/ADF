@@ -1,0 +1,34 @@
+{
+	"name": "ds_output_EmpTa_practise1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Tablename": {
+				"type": "string"
+			},
+			"SchemaName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "EmpTables_SP_Activity_datasets"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().SchemaName",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().Tablename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

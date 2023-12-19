@@ -1,0 +1,21 @@
+{
+	"name": "superstoreinputds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "superstore_final_dataset (1)",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "superstore_final_dataset (1).xlsx",
+				"container": "input"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

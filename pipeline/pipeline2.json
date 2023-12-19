@@ -1,0 +1,43 @@
+{
+	"name": "pipeline2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://projects.propublica.org/nonprofits/api/v2/search.json?order=revenue&sort_order=desc",
+					"method": "GET"
+				}
+			},
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 40
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-11-30T10:51:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

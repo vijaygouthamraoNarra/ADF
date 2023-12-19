@@ -1,0 +1,31 @@
+{
+	"name": "ds_input_DeleteActivity1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Delete old files from storage using Azure Data Factory"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": "E_CommerceSales",
+				"container": "input"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

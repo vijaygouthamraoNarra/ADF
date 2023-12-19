@@ -1,0 +1,44 @@
+{
+	"name": "ds_input_emp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "simple_mapping_dataflow_dataset"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "emp_data.txt",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "depid",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

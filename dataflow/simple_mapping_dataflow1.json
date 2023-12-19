@@ -1,0 +1,76 @@
+{
+	"name": "simple_mapping_dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_input_emp",
+						"type": "DatasetReference"
+					},
+					"name": "sourceEmpData"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_input_dept",
+						"type": "DatasetReference"
+					},
+					"name": "sourceDeptData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_output_empdept_innerjoin",
+						"type": "DatasetReference"
+					},
+					"name": "SinkInnerjoinEmpDept",
+					"rejectedDataLinkedService": {
+						"referenceName": "LS_AzureBlobStorage1",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"transformations": [
+				{
+					"name": "innerjoinEmpDeptdata"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as string,",
+				"          name as string,",
+				"          country as string,",
+				"          depid as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceEmpData",
+				"source(output(",
+				"          depid as string,",
+				"          depname as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceDeptData",
+				"sourceEmpData, sourceDeptData join(sourceEmpData@depid == sourceDeptData@depid,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> innerjoinEmpDeptdata",
+				"innerjoinEmpDeptdata sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empid,",
+				"          name,",
+				"          country,",
+				"          depid = sourceEmpData@depid,",
+				"          depname",
+				"     )) ~> SinkInnerjoinEmpDept"
+			]
+		}
+	}
+}

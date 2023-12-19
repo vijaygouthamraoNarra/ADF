@@ -1,0 +1,46 @@
+{
+	"name": "master pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CustProdOrd_pipeline",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute Pipeline2",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pipeline2_CustProdOrd",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "custProdOrd pipeline"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-15T09:35:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

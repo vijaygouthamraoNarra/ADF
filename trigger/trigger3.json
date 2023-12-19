@@ -1,0 +1,32 @@
+{
+	"name": "trigger3",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ForEach_Dynamically_Copy_one_file_to_three_different_folders",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"outputfolder": [
+						"output1",
+						"output2",
+						"output3"
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2023-12-04T12:35:00",
+				"endTime": "2023-12-04T12:41:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

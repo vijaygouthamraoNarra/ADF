@@ -1,0 +1,25 @@
+{
+	"name": "log_pipeline_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "LogPipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2023-12-17T14:05:00",
+				"endTime": "2023-12-17T14:08:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

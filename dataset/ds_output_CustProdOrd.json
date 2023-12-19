@@ -1,0 +1,16 @@
+{
+	"name": "ds_output_CustProdOrd",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CustProdOrd_dataset"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

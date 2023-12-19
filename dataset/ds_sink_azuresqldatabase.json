@@ -1,0 +1,28 @@
+{
+	"name": "ds_sink_azuresqldatabase",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "AzureBlob_To_AzureSQLDatabase"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Ecomm",
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

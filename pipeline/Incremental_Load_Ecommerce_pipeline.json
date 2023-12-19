@@ -1,10 +1,10 @@
 {
-	"name": "pipeline1",
+	"name": "Incremental_Load_Ecommerce_pipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Delete1",
-				"type": "Delete",
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -16,26 +16,33 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "outputDataSet",
+						"referenceName": "ds_Input_IncrementalLoad_Ecommerce",
 						"type": "DatasetReference"
 					},
-					"logStorageSettings": {
-						"linkedServiceName": {
-							"referenceName": "LS_AzureBlobStorage1",
-							"type": "LinkedServiceReference"
-						}
-					},
-					"enableLogging": true,
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
 						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
 					}
 				}
 			}
 		],
+		"parameters": {
+			"Latestfile": {
+				"type": "string"
+			},
+			"Referncedate": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
-		"lastPublishTime": "2023-11-29T07:01:29Z"
+		"lastPublishTime": "2023-12-06T07:30:10Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

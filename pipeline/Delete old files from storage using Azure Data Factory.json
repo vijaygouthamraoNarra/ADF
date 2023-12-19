@@ -1,0 +1,103 @@
+{
+	"name": "Delete old files from storage using Azure Data Factory",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_input_DeleteActivity",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"modifiedDatetimeEnd": {
+							"value": "@addDays(utcNow(),-10 )",
+							"type": "Expression"
+						},
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Delete1",
+							"type": "Delete",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "ds_input_DeleteActivity1",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								},
+								"logStorageSettings": {
+									"linkedServiceName": {
+										"referenceName": "LS_AzureBlobStorage1",
+										"type": "LinkedServiceReference"
+									}
+								},
+								"enableLogging": true,
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-18T06:21:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

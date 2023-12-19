@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "superstore",
+			"table": "superstorefinalsales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
