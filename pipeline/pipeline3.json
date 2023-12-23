@@ -77,7 +77,10 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"preCopyScript": "TRUNCATE TABLE [@{item().DES_SCHEMA_NAME}].[@{item().DES_TABLE}]",
+									"preCopyScript": {
+										"value": "TRUNCATE TABLE [@{item().DES_SCHEMA_NAME}].[@{item().DES_TABLE}]",
+										"type": "Expression"
+									},
 									"writeBehavior": "insert",
 									"sqlWriterUseTableLock": false,
 									"disableMetricsCollection": false
