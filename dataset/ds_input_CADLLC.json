@@ -1,0 +1,52 @@
+{
+	"name": "ds_input_CADLLC",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "CADLLC_Data",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "S.NO ",
+				"type": "String"
+			},
+			{
+				"name": "Customer Name ",
+				"type": "String"
+			},
+			{
+				"name": "Pens Purchased",
+				"type": "String"
+			},
+			{
+				"name": "Books purchased",
+				"type": "String"
+			},
+			{
+				"name": "Laptops Purchased",
+				"type": "String"
+			},
+			{
+				"name": "Dealer Name",
+				"type": "String"
+			},
+			{
+				"name": "Date ",
+				"type": "String"
+			}
+		]
+	}
+}

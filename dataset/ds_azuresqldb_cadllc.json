@@ -1,0 +1,16 @@
+{
+	"name": "ds_azuresqldb_cadllc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_azuresqldb_cadllc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "STG_CADLLC",
+			"table": "CFG_METADATA_SRC_STG"
+		}
+	}
+}
